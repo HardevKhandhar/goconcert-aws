@@ -182,6 +182,8 @@ def get_event_features(event):
 
 def parse_events(location, start_date, end_date, genre):
 
+    time.sleep(2)
+
     events_dict = {
         "no_of_events" : None,
         "events" : []

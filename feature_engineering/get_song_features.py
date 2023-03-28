@@ -295,6 +295,9 @@ def get_songs_by_playlists(token, playlist_id):
             if playlist['next']:
 
                 offset += 100
+
+                time.sleep(5)
+
             else:
 
                 break
@@ -376,6 +379,8 @@ def get_mul_tracks(token, playlist_id, playlist_tracks):
         # get list into correct format to be sent in url request
         artist_ids_list = ','.join(artist_ids_list)
 
+        time.sleep(1)
+
         # extract genres for each artist
         genre_ids = get_mul_artists_genres(token, artist_ids_list)
 
@@ -394,6 +399,8 @@ def get_mul_tracks(token, playlist_id, playlist_tracks):
         
         # Use this section of code to get track info for more than 50 tracks in a playlist
         while offset < track_id_length: 
+
+            time.sleep(5)
 
             artist_ids_list = []
 
@@ -418,6 +425,8 @@ def get_mul_tracks(token, playlist_id, playlist_tracks):
                     artist_ids_list.append(artist_ids)
 
                 artist_ids_list = ','.join(artist_ids_list)
+
+                time.sleep(1)
 
                 genre_ids = get_mul_artists_genres(token, artist_ids_list)
 
@@ -510,6 +519,8 @@ def get_mul_tracks_features(token, playlist_id, playlist_tracks):
         
         # Use this section of code to adjust for more than 100 tracks
         while offset < track_id_length:
+
+            time.sleep(5)
 
             # Keep adjusting offset
             params['ids'] = ','.join(track_id_list[offset:offset+100])

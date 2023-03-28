@@ -5,7 +5,7 @@ input: a link to a playlist which is public
 
 output: a csv file with containing the playlist information
 
-usage: python text_playlist_to_csv.py
+usage: python test_playlist_to_csv.py
 
 '''
 
@@ -154,7 +154,11 @@ def get_playlist_to_json(playlist_link):
 
             playlist_tracks = get_songs_by_playlists(token, playlist_id)
 
+            time.sleep(3)
+
             playlist_tracks_info = get_mul_tracks(token, playlist_id, playlist_tracks)
+
+            time.sleep(3)
 
             playlist_tracks_features_info = get_mul_tracks_features(token, playlist_id, playlist_tracks)
 
@@ -260,6 +264,3 @@ def playlist_to_csv(link):
     print('Done!')
 
     return playlist_name , 200
-
-
-

@@ -82,7 +82,7 @@ def index():
                 elif request.form['action'] == 'about':
 
                     # redirect to the about page
-                    return redirect(url_for('info'))
+                    return redirect(url_for('about'))
                 
                 # if the user has pressed the contact button
                 elif request.form['action'] == 'contact':
@@ -110,7 +110,7 @@ def analyse():
         elif request.form['action'] == 'about':
 
             # redirect to the about page
-            return redirect(url_for('info'))
+            return redirect(url_for('about'))
                 
         # if the user has pressed the contact button
         elif request.form['action'] == 'contact':
@@ -188,7 +188,7 @@ def recomend():
         elif request.form['action'] == 'about':
 
             # redirect to the about page
-            return redirect(url_for('info'))
+            return redirect(url_for('about'))
                 
         # if the user has pressed the contact button
         elif request.form['action'] == 'contact':
@@ -215,7 +215,7 @@ def showRecomendations():
         elif request.form['action'] == 'about':
 
             # redirect to the about page
-            return redirect(url_for('info'))
+            return redirect(url_for('about'))
                 
         # if the user has pressed the contact button
         elif request.form['action'] == 'contact':
@@ -228,8 +228,12 @@ def showRecomendations():
         data = json.load(f)
     events = data['events']
 
+    check = 0
+    if len(events) == 0:
+        check = 1
+    
     # display the concert recomendations page
-    return render_template('showRecomendations.html' , events=events)
+    return render_template('showRecomendations.html' , events=events, check=check)
 
 # application route for the info page
 @app.route('/info' , methods=['GET', 'POST'])
@@ -248,7 +252,7 @@ def info():
             elif request.form['action'] == 'about':
 
                 # redirect to the about page
-                return redirect(url_for('info'))
+                return redirect(url_for('about'))
             
             # if the user has pressed the contact button
             elif request.form['action'] == 'contact':
@@ -259,6 +263,33 @@ def info():
         # display the info page
         return render_template('info.html')
 
+# application route for the info page
+@app.route('/about' , methods=['GET', 'POST'])
+def about():
+    
+        # if the user has pressed a button
+        if request.method == 'POST':
+    
+            # if the user has pressed the home button
+            if request.form['action'] == 'home':
+    
+                # redirect to the home page
+                return redirect(url_for('index'))
+            
+            # if the user has pressed the about button
+            elif request.form['action'] == 'about':
+
+                # redirect to the about page
+                return redirect(url_for('about'))
+            
+            # if the user has pressed the contact button
+            elif request.form['action'] == 'contact':
+                    
+                    # redirect to the contact page
+                    return redirect(url_for('info'))
+    
+        # display the info page
+        return render_template('about.html')
 
 # application route for the error page
 @app.route('/error' , methods=['GET', 'POST'])
@@ -277,7 +308,7 @@ def error():
             elif request.form['action'] == 'about':
 
                 # redirect to the about page
-                return redirect(url_for('info'))
+                return redirect(url_for('about'))
             
             # if the user has pressed the contact button
             elif request.form['action'] == 'contact':
@@ -287,7 +318,6 @@ def error():
     
         # display the info page
         return render_template('error.html')
-
 
 # run the flask app
 if __name__ == '__main__':

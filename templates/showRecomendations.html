@@ -148,6 +148,7 @@
   </style>
   </head>
   <body>
+    {% if check == 0 %}
     <div class="center">
       {% for event in events %}
         <div class="event-box">
@@ -160,7 +161,11 @@
         </div>
       {% endfor %}
     </div>
-
+    {% else %}
+      <div class="center">
+        <h2>Sorry, we couldn't find any events for you. Please select a different location or a different date range. </h2>
+      </div>
+    {% endif %}
   <form method="post">
     <div class="navbar">
       <button type="submit" name="action" value = 'home'>Home</button>
